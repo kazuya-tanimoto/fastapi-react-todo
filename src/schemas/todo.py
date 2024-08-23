@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pydantic import BaseModel
 
 class Todo(BaseModel):
@@ -9,5 +11,3 @@ class TodoBody(BaseModel):
     title: str
     description: str
 
-class SuccessMessage(BaseModel):
-    message: str
