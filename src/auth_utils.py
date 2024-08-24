@@ -8,9 +8,9 @@ JWT_SECRET_KEY = config('JWT_SECRET_KEY')
 
 
 class AuthJwtCsrf:
-    ctx = CryptContext(schemes=['bcrypt'], deperecate='auto')
+    ctx = CryptContext(schemes=['bcrypt'], deprecated='auto')
 
-    def pash_password(self, password) -> str:
+    def hash_password(self, password) -> str:
         return self.ctx.hash(password)
 
     def verify_password(self, plain_password, hashed_password) -> bool:
