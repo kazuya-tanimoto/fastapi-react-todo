@@ -1,5 +1,5 @@
 import jwt
-from fastapi import HTTPException, Request
+from fastapi import HTTPException, Request, Response
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
 from decouple import config
@@ -62,3 +62,11 @@ class AuthJwtCsrf:
         subject = self.verify_jwt(request)
         new_token = self.encode_jwt(subject)
         return new_token
+
+    @staticmethod
+    def set_jwt_cookie(response: Response, token: str):
+        response.set_cookie(key='access_token', value=f'Bearer {token}', httponly=True, samesite='none', secure=True)
+
+    @staticmethod
+    def clear_jwt_cookie(response: Response):
+        response.set_cookie(key='access_token', value="", httponly=True, samesite='none', secure=True)
