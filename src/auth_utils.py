@@ -51,14 +51,14 @@ class AuthJwtCsrf:
         subject = self.decode_jwt(value)
         return subject
 
-    def verify_and_update_jwt(self, request: Request) -> tuple[str, str]:
+    def verify_update_jwt(self, request: Request) -> tuple[str, str]:
         subject = self.verify_jwt(request)
         new_token = self.encode_jwt(subject)
         return subject, new_token
 
-    def verify_csrf_and_update_jwt(self, request: Request, csrf_protest: CsrfProtect, headers: Headers) -> str:
-        csrf_token = csrf_protest.get_csrf_from_headers(headers)
-        csrf_protest.validate_csrf(csrf_token)
+    def verify_update_csrf_jwt(self, request: Request, csrf_protect: CsrfProtect, headers: Headers) -> str:
+        csrf_token = csrf_protect.get_csrf_from_headers(headers)
+        csrf_protect.validate_csrf(csrf_token)
         subject = self.verify_jwt(request)
         new_token = self.encode_jwt(subject)
         return new_token
