@@ -1,7 +1,9 @@
 from fastapi import HTTPException
+
 from utils.auth import AuthJwtCsrf
 from utils.common import serialize
 from utils.dependencies import get_database
+
 
 class UserService:
     def __init__(self, db=get_database()):

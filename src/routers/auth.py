@@ -1,13 +1,14 @@
-from fastapi import APIRouter, Request, Response, Depends
+from fastapi import APIRouter, Depends, Request, Response
 from fastapi.encoders import jsonable_encoder
 from fastapi_csrf_protect import CsrfProtect
-from schemas.user import UserInfo, UserBody
-from schemas.auth import CsrfToken
-from utils.auth import AuthJwtCsrf
-from schemas.common import SuccessMessage
-from services.user import UserService
 
-router = APIRouter()
+from schemas.auth import CsrfToken
+from schemas.common import SuccessMessage
+from schemas.user import UserBody, UserInfo
+from services.user import UserService
+from utils.auth import AuthJwtCsrf
+
+router: APIRouter = APIRouter()
 auth = AuthJwtCsrf()
 service = UserService()
 

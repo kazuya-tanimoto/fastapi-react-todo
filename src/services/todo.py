@@ -1,7 +1,9 @@
-from bson import ObjectId
 from typing import Union
-from utils.dependencies import get_database
+
+from bson import ObjectId
+
 from utils.common import serialize
+from utils.dependencies import get_database
 
 
 class TodoService:

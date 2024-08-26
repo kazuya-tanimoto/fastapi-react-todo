@@ -1,11 +1,12 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
-from starlette.middleware.cors import CORSMiddleware
-from routers import todo, auth
-from schemas.common import SuccessMessage
-from schemas.auth import CsrfSettings
 from fastapi_csrf_protect import CsrfProtect
 from fastapi_csrf_protect.exceptions import CsrfProtectError
+from starlette.middleware.cors import CORSMiddleware
+
+from routers import auth, todo
+from schemas.auth import CsrfSettings
+from schemas.common import SuccessMessage
 
 app = FastAPI()
 app.include_router(todo.router)
