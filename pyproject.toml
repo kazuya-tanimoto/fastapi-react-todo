@@ -1,35 +1,51 @@
 [tool.ruff]
-# 1行の最大文字数
-line-length = 88
 
-[tool.ruff.lint]
-# チェックするエラーの種類
-select = [
-    "E",  # pycodestyle errors
-    "W",  # pycodestyle warnings
-    "F",  # pyflakes
-    "I",  # isort
-    "B",  # flake8-bugbear
-    "C4",  # flake8-comprehensions
-    "UP",  # pyupgrade
-]
-# 除外するエラーの種類
+select = ["ALL"]
+# ref: https://github.com/takashi-yoneya/python-template/blob/main/pyproject.toml
 ignore = [
-    "E501",  # line too long, handled by black
-    "B008",  # do not perform function calls in argument defaults
-    "C901",  # too complex
-    "W191",  # indentation contains tabs
-    "B904", # raise ... from ... になっていない場合のエラーを無視
+    "G004", # `logging-f-string`
+    "PLC1901", # compare-to-empty-string
+    "PLR2004", # magic-value-comparison
+    "ANN101", # missing-type-self
+    "ANN102", # missing-type-cls
+    "ANN002", # missing-type-args
+    "ANN003", # missing-type-kwargs
+    "ANN401", # any-type
+    "ERA", # commented-out-code
+    "ARG002", # unused-method-argument
+    "INP001", # implicit-namespace-package
+    "PGH004", # blanket-noqa
+    "B008", # Dependsで使用するため
+    "A002", # builtin-argument-shadowing
+    "A003", # builtin-attribute-shadowing
+    "PLR0913", # too-many-arguments
+    "RSE", # flake8-raise
+    "D", # pydocstyle
+    "C90", # mccabe
+    "T20", # flake8-print
+    "SLF", #  flake8-self
+    "BLE", # flake8-blind-except
+    "FBT", # flake8-boolean-trap
+    "TRY", # tryceratops
+    "COM", # flake8-commas
+    "S", # flake8-bandit
+    "EM",#flake8-errmsg
+    "EXE", # flake8-executable
+    "ICN", # flake8-import-conventions
+    "RET",#flake8-return
+    "SIM",#flake8-simplify
+    "TCH", # flake8-type-checking
+    "PTH", #pathlibを使わないコードが多いので、除外する
+    "ISC", #flake8-implicit-str-concat
+    "N", # pep8-naming
+    "PT", # flake8-pytest-style
+    "PGH003"
 ]
 
-# ファイルごとのエラー除外
-[tool.ruff.lint.per-file-ignores]
-"__init__.py" = ["F401"]
+line-length = 120
 
-# isort の設定
-[tool.ruff.lint.isort]
-known-third-party = ["fastapi", "pydantic", "starlette"]
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
-[tool.ruff.lint.pyupgrade]
-# Python3.8互換のための設定
-keep-runtime-typing = true
+# Assume Python 3.9.
+target-version = "py39"
