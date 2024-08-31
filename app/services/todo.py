@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from bson import ObjectId
 from motor import motor_asyncio
-
 from utils.common import convert_document
 from utils.dependencies import connect_to_api_database
 
