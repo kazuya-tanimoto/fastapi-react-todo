@@ -10,6 +10,6 @@ def convert_document(document: dict, fields: list[str]) -> dict:
     for field in fields:
         if field == "_id":
             serialized["id"] = str(document["_id"])
-        else:
+        elif field in document:
             serialized[field] = document[field]
     return serialized
