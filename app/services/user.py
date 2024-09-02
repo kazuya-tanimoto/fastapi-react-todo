@@ -1,6 +1,5 @@
 from fastapi import HTTPException
 from motor import motor_asyncio
-
 from utils.auth import AuthJwtCsrf
 from utils.common import convert_document
 from utils.dependencies import connect_to_api_database

@@ -1,10 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException, Request, Response
 from fastapi.encoders import jsonable_encoder
 from fastapi_csrf_protect import CsrfProtect
-from starlette.status import HTTP_201_CREATED
-
 from schemas.todo import Todo, TodoBody
 from services.todo import TodoService
+from starlette.status import HTTP_201_CREATED
 from utils.auth import AuthJwtCsrf
 
 router = APIRouter()

@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Depends, Request, Response
 from fastapi.encoders import jsonable_encoder
 from fastapi_csrf_protect import CsrfProtect
-
 from schemas.auth import CsrfToken
 from schemas.common import SuccessMessage
 from schemas.user import UserBody, UserInfo
