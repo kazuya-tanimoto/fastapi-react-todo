@@ -3,11 +3,11 @@ from __future__ import annotations
 from bson import ObjectId
 from motor import motor_asyncio
 from utils.common import convert_document
-from utils.dependencies import connect_to_api_database
+from utils.dependencies import connect_database
 
 
 class TodoService:
-    def __init__(self, db: motor_asyncio.AsyncIOMotorDatabase = connect_to_api_database()) -> None:
+    def __init__(self, db: motor_asyncio.AsyncIOMotorDatabase = connect_database()) -> None:
         """
         コンストラクタ
 

@@ -2,11 +2,11 @@ from fastapi import HTTPException
 from motor import motor_asyncio
 from utils.auth import AuthJwtCsrf
 from utils.common import convert_document
-from utils.dependencies import connect_to_api_database
+from utils.dependencies import connect_database
 
 
 class UserService:
-    def __init__(self, db: motor_asyncio.AsyncIOMotorDatabase = connect_to_api_database()) -> None:
+    def __init__(self, db: motor_asyncio.AsyncIOMotorDatabase = connect_database()) -> None:
         """
         コンストラクタ
 

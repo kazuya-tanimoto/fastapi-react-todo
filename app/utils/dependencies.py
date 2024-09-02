@@ -5,7 +5,7 @@ MONGO_API_KEY = config("MONGO_API_KEY")
 DATABASE_NAME = "API_DB"
 
 
-def connect_to_api_database() -> motor_asyncio.AsyncIOMotorDatabase:
+def connect_database() -> motor_asyncio.AsyncIOMotorDatabase:
     """
     接続しているMongoDBクライアントからAPI データベースを取得する
 
