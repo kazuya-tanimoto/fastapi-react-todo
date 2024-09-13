@@ -14,7 +14,9 @@ LOCALHOST_ORIGIN = "http://localhost:3000"
 
 class CsrfSettings(BaseModel):
     secret_key: str = config("CSRF_SECRET_KEY")
-    cookie_samesite: str = "none"
+    if config("ENVIRONMENT") == "production":
+        cookie_samesite: str = "none"
+        cookie_secure: bool = True
 
 
 def create_app() -> FastAPI:
