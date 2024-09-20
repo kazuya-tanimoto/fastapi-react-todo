@@ -19,7 +19,8 @@ def generate_csrf_token(csrf_protect: CsrfProtect = Depends()) -> dict[str, str]
     :param csrf_protect: CsrfProtectインスタンス
     :return: CSRFトークン
     """
-    csrf_token = csrf_protect.generate_csrf()
+    # csrf_token = csrf_protect.generate_csrf()
+    csrf_token, signed_token = csrf_protect.generate_csrf_tokens()
     return {"csrf_token": csrf_token}
 
 
@@ -33,6 +34,7 @@ async def signup(request: Request, user: UserBody, csrf_protect: CsrfProtect = D
     :return: 登録した情報
     """
     csrf_protect.validate_csrf(csrf_protect.get_csrf_from_headers(request.headers))
+    # await csrf_protect.validate_csrf(request)
     user = jsonable_encoder(user)
     return await service.register(user)
 

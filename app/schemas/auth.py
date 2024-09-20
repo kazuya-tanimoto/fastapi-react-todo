@@ -11,7 +11,9 @@ class CsrfSettings(BaseModel):
     - cookie_samesite: CSRFトークンのCookie
     """
     secret_key: str = CRSF_SECRET_KEY
-    cookie_samesite: str = "none"
+    if config("ENVIRONMENT") == "production":
+        cookie_samesite: str = "none"
+        cookie_secure: bool = True
 
 
 class CsrfToken(BaseModel):

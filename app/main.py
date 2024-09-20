@@ -1,22 +1,14 @@
-from decouple import config
 from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi_csrf_protect import CsrfProtect
 from fastapi_csrf_protect.exceptions import CsrfProtectError
-from pydantic import BaseModel
 from routers import auth, todo
+from schemas.auth import CsrfSettings
 from schemas.common import SuccessMessage
-from starlette.middleware.cors import CORSMiddleware
 
 # 設定の定数を定義
-LOCALHOST_ORIGIN = "http://localhost:3000"
-
-
-class CsrfSettings(BaseModel):
-    secret_key: str = config("CSRF_SECRET_KEY")
-    if config("ENVIRONMENT") == "production":
-        cookie_samesite: str = "none"
-        cookie_secure: bool = True
+LOCALHOST_ORIGINS = ["http://localhost:3000", "http://localhost:80"]
 
 
 def create_app() -> FastAPI:
@@ -28,7 +20,7 @@ def create_app() -> FastAPI:
     fastapi = FastAPI()
     fastapi.include_router(todo.router)
     fastapi.include_router(auth.router)
-    add_cors_middleware(fastapi, [LOCALHOST_ORIGIN])
+    add_cors_middleware(fastapi, LOCALHOST_ORIGINS)
     configure_csrf(fastapi)
     return fastapi
 
