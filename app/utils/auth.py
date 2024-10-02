@@ -90,8 +90,7 @@ class AuthJwtCsrf:
         :param headers: リクエストヘッダー
         :return: 更新されたJWTトークン
         """
-        csrf_token = csrf_protect.get_csrf_from_headers(headers)
-        csrf_protect.validate_csrf(csrf_token)
+        csrf_protect.validate_csrf(request)
         email = self.verify_jwt(request)
         new_token = self.encode_jwt(email)
         return new_token
