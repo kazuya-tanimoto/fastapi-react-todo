@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta, timezone
+from typing import Literal
 
 import jwt
 from decouple import config
@@ -113,3 +114,20 @@ class AuthJwtCsrf:
         :param response: クッキーを設定するレスポンス
         """
         response.set_cookie(key="access_token", value="", httponly=True, samesite="none", secure=True)
+
+
+def set_cookie(response: Response, key: str, value: str) -> None:
+    """
+    CSRF設定
+    - secret_key: CSRFトークンの秘密鍵
+    - cookie_samesite: CSRFトークンのCookie
+    """
+
+    if config("ENVIRONMENT") == "production":
+        cookie_samesite: Literal["lax", "strict", "none"] = "none"
+        cookie_secure: bool = True
+    else:
+        cookie_samesite: Literal["lax", "strict", "none"] = "lax"
+        cookie_secure: bool = False
+
+    response.set_cookie(key=key, value=value, httponly=True, samesite=cookie_samesite, secure=cookie_secure)
