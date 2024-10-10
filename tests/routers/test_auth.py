@@ -108,13 +108,8 @@ async def test_get_user_refresh_jwt(async_client: AsyncClient, mock_user_service
     access_token_cookie = login_response.cookies.get("access_token")
     assert access_token_cookie is not None, "'access_token' Cookie not set"
 
-    # ログイン後のクッキーを確認（オプション）
-    print("\n--- cookies after login --------------------\n")
-    print(login_response.cookies)
-
-    # async_clientのクッキーを確認
-    print("\n--- cookies async client --------------------\n")
-    print(async_client.cookies)
+    # AsyncClientにクッキーをセット（不要な場合は削除）
+    async_client.cookies.set("access_token", access_token_cookie, domain="testserver.local", path="/")
 
     # /api/user にアクセス
     response = await async_client.get("/api/user")

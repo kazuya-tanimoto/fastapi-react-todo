@@ -89,7 +89,6 @@ def get_user_refresh_jwt(request: Request, response: Response) -> dict:
     :param response: レスポンス
     :return: メールアドレス
     """
-    print("\n--- cookies from request --------------------\n")
     print(request.cookies)
     subject, new_token = auth.update_jwt(request)
     auth.set_jwt_cookie(response, new_token)
