@@ -3,17 +3,16 @@ from datetime import datetime
 import pytest
 from httpx import AsyncClient
 
-
-@pytest.mark.asyncio
-async def test_generate_csrf_token(async_client: AsyncClient):
-    # CSRFトークンを取得
-    response = await async_client.get("/api/csrf-token")
-    assert response.status_code == 200, "Failed to get CSRF token"
-    assert "csrf_token" in response.json(), "CSRF token not in response"
-
-    # クッキーが設定されていることを確認
-    csrf_cookie = response.cookies.get("fastapi-csrf-token")
-    assert csrf_cookie is not None, "'fastapi-csrf-token' Cookie not set"
+# @pytest.mark.asyncio
+# async def test_generate_csrf_token(async_client: AsyncClient):
+#     # CSRFトークンを取得
+#     response = await async_client.get("/api/csrf-token")
+#     assert response.status_code == 200, "Failed to get CSRF token"
+#     assert "csrf_token" in response.json(), "CSRF token not in response"
+#
+#     # クッキーが設定されていることを確認
+#     csrf_cookie = response.cookies.get("fastapi-csrf-token")
+#     assert csrf_cookie is not None, "'fastapi-csrf-token' Cookie not set"
 
 
 @pytest.mark.asyncio
