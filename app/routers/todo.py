@@ -38,7 +38,7 @@ async def fetch_todos(request: Request) -> list[dict]:
     :param request: リクエスト
     :return: todoのリスト
     """
-    auth.verify_jwt(request)
+    # auth.verify_jwt(request)
     return await service.get_todos()
 
 
