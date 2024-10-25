@@ -8,7 +8,7 @@ from schemas.auth import CsrfSettings
 from schemas.common import SuccessMessage
 
 # 設定の定数を定義
-LOCALHOST_ORIGINS = ["http://localhost:3000", "http://localhost:80"]
+ORIGINS = ["http://localhost:3000", "http://localhost:80", "https://fastapi-react-todo.onrender.com"]
 
 
 def create_app() -> FastAPI:
@@ -20,7 +20,7 @@ def create_app() -> FastAPI:
     fastapi = FastAPI()
     fastapi.include_router(todo.router)
     fastapi.include_router(auth.router)
-    add_cors_middleware(fastapi, LOCALHOST_ORIGINS)
+    add_cors_middleware(fastapi, ORIGINS)
     configure_csrf(fastapi)
     return fastapi
 
